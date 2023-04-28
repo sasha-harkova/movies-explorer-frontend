@@ -19,7 +19,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 function App() {
 const [currentUser, setUserInfo] = useState({ name: "Test", email: "qwerty@qwerty.ru"});
 const [isClicked, setIsClicked] = useState(false);
-const [loggedIn, setLoggedIn] = useState(false);
+const [loggedIn, setLoggedIn] = useState(false); //
 const [currentYear, setCurrentYear] = useState("");
 const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 const [isSuccessfulSession, setIsSuccessfulSession] = useState(false);
@@ -49,17 +49,16 @@ function signOut() {
 }
 
 function onLogin() {
+	setLoggedIn(true);
 	navigate("/", { replace: true });
 	showInfoTooltip();
 	setIsSuccessfulSession(true);
-	console.log(pathname)
 }
 
 function onRegister() {
 	navigate("/signin", { replace: true });
 	showInfoTooltip();
 	setIsSuccessfulSession(true);
-	console.log(pathname)
 }
 
 
