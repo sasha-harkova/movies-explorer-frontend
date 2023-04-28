@@ -1,0 +1,143 @@
+.footer {
+    margin-top: auto;
+    background-color: #fff;
+}
+
+.footer__container {
+    max-width: 1280px;
+    padding: 79px 70px 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+    .footer__container  {
+        padding: 79px 30px 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .footer__container  {
+        padding: 79px 10px 20px;
+    }
+}
+
+.footer__title {
+    margin: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E8E8E8;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #A0A0A0;
+    text-align: center;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__title {
+        padding-bottom: 21px;
+        font-size: 13px;
+        line-height: 16px;
+    }
+}
+
+.footer__wrapper {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__wrapper {
+        padding-top: 30px;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}
+
+.footer__date {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #000;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__date {
+        font-size: 12px;
+        line-height: 14px;
+    }
+}
+
+.footer__nav-list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__nav-list {
+        margin-bottom: 30px;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.footer__nav-item {
+    margin-right: 20px;
+    list-style-type: none;
+}
+
+.footer__nav-item:last-of-type {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__nav-item {
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+
+    .footer__nav-item:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.footer__link {
+    margin-right: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #000;
+    text-decoration: none;
+    transition: opacity .3s;
+}
+
+.footer__link:last-of-type {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .footer__link {
+        margin-right: 0;
+        margin-bottom: 12px;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+    }
+
+    .footer__link:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+
+@media (hover:hover) {
+    .footer__link:hover {
+        opacity: .7;
+    }
+}

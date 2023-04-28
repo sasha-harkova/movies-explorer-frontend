@@ -1,0 +1,10 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.page {
+  min-height: 100vh;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
