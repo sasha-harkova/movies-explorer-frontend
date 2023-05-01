@@ -36,6 +36,11 @@ useEffect(() => {
 
 function toggleAside() {
 	setIsClicked(!isClicked);
+	if (!isClicked) {
+		document.querySelector('html').classList.add('not-scroll');
+	} else {
+		document.querySelector('html').classList.remove('not-scroll');
+	}
 }
 
 function showInfoTooltip() {

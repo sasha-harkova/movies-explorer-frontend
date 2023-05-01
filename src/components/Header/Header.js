@@ -1,9 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navigation from '../Navigation/Navigation'
 
 function Header({ toggleAside, isClicked, isLoggedIn, pathname }) {
-
-	// const { pathname } = useLocation();
 
 	return (
 	<header className="header">
