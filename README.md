@@ -3,4 +3,4 @@ Frontend часть дипломной работы по курсу Web-разр
 
 [Ссылка на макет](https://disk.yandex.ru/d/RKrH4XliR8GbZw)
 
-[Ссылка на страницу](movies.search.harkova.nomoredomains.monster)
+[Ссылка на страницу](https://movies.search.harkova.nomoredomains.monster/)
