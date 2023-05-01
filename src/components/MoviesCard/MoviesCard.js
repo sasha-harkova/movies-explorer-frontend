@@ -27,7 +27,7 @@ function MoviesCard({ card }) {
 		<a className="card__trailer-link" href={trailerLink} target='_blank'>
             <img className="card__image" src={thumbnail} alt={`Постер к фильму "${nameRU}"`}/>
         </a>
-        {pathname === 'movies' 
+        {pathname === '/movies' 
             ? <button className={`card__button ${isSaved && 'card__button_active'}`} onClick={saveMovie}>{isSaved ? <img class="card__button-icon" src={savedButtonIcon} alt="крестик"/> : 'Сохранить'}</button>
             : <button className="card__button" onClick={(evt) => deleteMovie(evt)}><img class="card__button-icon" src={deleteButtonIcon} alt="крестик"/></button>
         }

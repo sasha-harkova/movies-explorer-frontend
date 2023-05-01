@@ -15,7 +15,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .nav-tab__container {
         padding: 50px 10px 30px;
     }

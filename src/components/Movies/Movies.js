@@ -17,7 +17,7 @@ function Movies() {
 	return (
 	<main className="movies">
 		<SearchForm setSearched={onSearch}/>
-		{searched && (<MoviesCardList />)}
+		<MoviesCardList />
 		
 	</main>
 	);

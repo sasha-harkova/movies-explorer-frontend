@@ -16,7 +16,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .about-me__container {
         padding: 70px 18px;
     }
@@ -33,7 +33,7 @@
     letter-spacing: -0.04em;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .about-me__title {
         padding-bottom: 28px;
         font-size: 18px;
@@ -47,13 +47,13 @@
     justify-content: space-between;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .about-me__flex  {
         flex-direction: column-reverse;
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .about-me__flex {
         margin-top: 60px;
     }
@@ -66,7 +66,7 @@
     flex-direction: column;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .about-me__text-wrapper {
         margin-top: 40px;
         margin-right: 0;
@@ -90,7 +90,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .about-me__name {
         margin-bottom: 20px;
         font-size: 30px;
@@ -114,7 +114,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .about-me__description {
         font-size: 11px;
         line-height: 16px;
@@ -136,7 +136,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .about-me__story {
         margin-bottom: 0;
         font-size: 11px;
@@ -162,7 +162,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .about-me__link-to-github {
         margin-top: 40px;
     }
@@ -183,7 +183,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .about-me__photo {
         width: 100%;
         max-width: 292px;

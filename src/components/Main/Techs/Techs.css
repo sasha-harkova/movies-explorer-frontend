@@ -16,7 +16,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .techs__container {
         padding: 70px 18px;
     }
@@ -33,7 +33,7 @@
     letter-spacing: -0.04em;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .techs__title {
         padding-bottom: 28px;
         font-size: 18px;
@@ -57,7 +57,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .techs__seven-techs {
         margin: 60px auto 24px;
         font-size: 30px;
@@ -84,7 +84,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .techs__description {
         margin-bottom: 50px;
         font-size: 11px;
@@ -114,7 +114,7 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .techs__list  {
         grid-template-columns: repeat(2, 84px);
     }
