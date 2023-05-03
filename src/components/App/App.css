@@ -1,0 +1,14 @@
+html {
+	scroll-behavior: smooth;
+}
+
+.not-scroll {
+	overflow-y: hidden;
+}
+
+.page {
+	min-height: 100vh;
+	user-select: none;
+	display: flex;
+	flex-direction: column;
+}

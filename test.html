@@ -1,0 +1,55 @@
+<section class="form">
+  <div class="form__container">
+    <a class="form__logo" href="/"></a>
+    <h1 class="form__greeting">Добро пожаловать!</h1>
+    <form class="form__form" novalidate="">
+      <fieldset class="form__inputs">
+        <label class="form__label" for="name">Имя</label
+        ><input
+          class="form__input undefined"
+          id="name"
+          name="name"
+          type="text"
+          placeholder="Введите имя"
+          minlength="2"
+          maxlength="30"
+          required=""
+        /><label class="form__label" for="email">E-mail</label
+        ><input
+          class="form__input undefined"
+          id="email"
+          name="email"
+          autocomplete="email"
+          type="email"
+          placeholder="Введите email"
+          required=""
+        /><label class="form__label" for="password">Пароль</label
+        ><input
+          class="form__input undefined"
+          id="password"
+          name="password"
+          autocomplete="password"
+          type="password"
+          placeholder="Введите пароль"
+          minlength="8"
+          maxlength="30"
+          required=""
+        />
+      </fieldset>
+      <p class="form__error"></p>
+      <p class="form__error"></p>
+      <p class="form__error"></p>
+      <button
+        class="form__submit-button form__submit-button_disabled"
+        type="submit"
+        disabled=""
+      >
+        Зарегестрироваться
+      </button>
+      <p class="form__question">
+        Уже зарегистрированы?
+        <span><a class="form__link-to-signin" href="/signin">Войти</a></span>
+      </p>
+    </form>
+  </div>
+</section>
