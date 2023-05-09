@@ -1,11 +1,11 @@
-function InfoTooltip({ isInfoTooltipOpen, isSuccessfulSession, pathname }) {
+function InfoTooltip({ isInfoTooltipOpen, isSuccessfulSession, tooltipText }) {
 
     return (
     <div className={`tooltip ${isInfoTooltipOpen ? "tooltip_opened" : ""}`}>
         <div className="tooltip__container">
             {isSuccessfulSession 
-                ? <p className="tooltip__text tooltip__text_type_success">{`Вы успешно ${pathname === "/signin" ? "зарегистрировались" : "авторизовались"}!`}</p>
-                : <p className="tooltip__text tooltip__text_type_error">Что-то пошло не так! Попробуйте ещё раз.</p>
+                ? <p className="tooltip__text tooltip__text_type_success">{tooltipText}</p>
+                : <p className="tooltip__text tooltip__text_type_error">{tooltipText}</p>
             }   
         </div>
     </div>

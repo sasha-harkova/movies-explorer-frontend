@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import useFormAndValidation from "../../hooks/useFormAndValidation";
+import { VALIDATION } from "../../utils/constants";
 
 
-function Profile({ signOut }) {
-	const currentUser = useContext(CurrentUserContext);
+
+function Profile({ signOut, updateCurrentProfile, isDisabled, clickButtonForEditInputs }) {
+	const { currentUser } = useContext(CurrentUserContext);
   	const { values, handleChange, errors, isValid, setValues, setIsValid } = useFormAndValidation();
 
 	useEffect(() => {
@@ -12,17 +14,10 @@ function Profile({ signOut }) {
 		setIsValid(false);
 	}, [currentUser]);
 
-	const [isDisabled, setIsDisabled] = useState(true);
-
-	function clickButtonForEditInputs() {
-		setIsDisabled(false)
-	}
 
 	function handleSubmit(e){
 		e.preventDefault();
-		currentUser.name = values.name;
-		currentUser.email = values.email;
-		setIsDisabled(true);
+		updateCurrentProfile(values.name, values.email);
 	}
 
 	return (
@@ -43,7 +38,7 @@ function Profile({ signOut }) {
 							placeholder="Введите имя"
 							minLength='2'
 							maxLength='30'
-							pattern='^[\\sa-zA-Zа-яА-ЯёЁ-]+$'
+							pattern={VALIDATION.name.pattern}
 							required>
 						</input>
 					</div>

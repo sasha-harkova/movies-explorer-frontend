@@ -1,4 +1,5 @@
 import {useState, useCallback} from 'react';
+import { VALIDATION } from '../utils/constants';
 
 function useFormAndValidation() {
 	const [ values, setValues ] = useState({});
@@ -9,10 +10,12 @@ function useFormAndValidation() {
 
 	const handleChange = (e) => {
 		if (e.target.validity.patternMismatch) {
-			e.target.setCustomValidity('Имя может содержать только латиницу, кириллицу, пробел или дефис')
+			e.target.setCustomValidity(VALIDATION.name.message)
 		} else {
 			e.target.setCustomValidity('')
 		}
+
+		
 		const {name, value} = e.target
 		setValues({...values, [name]: value });
 		setErrors({...errors, [name]: e.target.validationMessage});

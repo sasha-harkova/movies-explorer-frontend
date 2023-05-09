@@ -1,22 +1,29 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useFormAndValidation from "../../hooks/useFormAndValidation";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 
-function SearchForm({setSearched}) {
-  	const { handleChange, isValid, setValues, setIsValid } = useFormAndValidation();
+function SearchForm({handleSearch, handleCheckbox, pathname}) {
+  	const { handleChange, isValid, setValues, setIsValid, values } = useFormAndValidation();
     const [isFocus, setIsFocus]  = useState(false);
 
 	useEffect(() => {
-		setIsValid(false);
+        setIsValid(false);
+
+        if (pathname === '/movies') {
+            const storageRequest = localStorage.getItem('request') || '';
+            
+            if (storageRequest !== '') {
+                setIsValid(true);
+                setValues({search: storageRequest});
+            }
+        }
 	}, []);
 
-    function makeIsFocus() {
-        setIsFocus(!isFocus);
-    }
 
 	function handleSubmit(e){
 		e.preventDefault();
-        setSearched(true);
+        handleSearch(values.search);
 	}
 
 	return (
@@ -24,24 +31,19 @@ function SearchForm({setSearched}) {
             <div className="search__container">
                 <form className="search__form" noValidate onSubmit={handleSubmit}>
                     <fieldset className={`search__fieldset ${isFocus ? "search__fieldset_type_bold" : ""}`}>
-                        <input className="search__input" 
+                        <input className="search__input"
+                            id="search"
                             name="search" 
                             onChange={handleChange}
-                            // onFocus={makeIsFocus}
-                            onFocus={(e) => setIsFocus(true)}
-                            onBlur={(e) => setIsFocus(false)}
+                            onFocus={() => setIsFocus(true)}
+                            onBlur={() => setIsFocus(false)}
                             type="text"
                             placeholder="Фильм"
-                            minLength='2'
-                            maxLength='30'
-                            required>
+                            value={values.search || ""}>
                         </input>
                         <button className={`search__submit-button ${!isValid ? "search__submit-button_disabled" : ""}`} type="submit" disabled={!isValid}>Поиск</button>
                     </fieldset>
-                    <fieldset className="search__checkbox-fieldset">
-                        <input className="search__checkbox" type="checkbox" id="checkbox"></input>
-                        <label className="search__checkbox-label" htmlFor="checkbox">Короткометражки</label>
-                    </fieldset>
+                    <FilterCheckbox pathname={pathname} handleCheckbox={handleCheckbox} />
                 </form>	
                 
             </div>
