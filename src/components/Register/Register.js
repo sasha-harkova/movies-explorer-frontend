@@ -5,12 +5,13 @@ import SignInAndSignUpForm from "../SignInAndSignUpForm/SignInAndSignUpForm";
 import { VALIDATION } from "../../utils/constants";
 
 
-function Register({ onRegister, errorText }) {
+function Register({ onRegister, errorText, setIsDisabled, isDisabled }) {
 
 	const { handleChange, errors, isValid, setIsValid, values } = useFormAndValidation();
 
 	useEffect(() => {
 		setIsValid(false);
+		setIsDisabled(false);
 	}, []);
 
 	function handleSubmit(e) {
@@ -32,7 +33,8 @@ function Register({ onRegister, errorText }) {
 			<label className="form__label" htmlFor="name">Имя</label>
 			<input className={`form__input ${errors.name ? "form__input_type_error" : ""}`}
 				id="name"
-				name="name" 
+				name="name"
+				disabled={isDisabled} 
 				onChange={handleChange} 
 				value={values.name || ''}
 				type="text"
@@ -46,7 +48,8 @@ function Register({ onRegister, errorText }) {
 			<label className="form__label" htmlFor="email">E-mail</label>
 			<input className={`form__input ${errors.email ? "form__input_type_error" : ""}`} 
 				id="email"
-				name="email" 
+				name="email"
+				disabled={isDisabled} 
 				onChange={handleChange}
 				value={values.email || ''} 
 				autoComplete="email"

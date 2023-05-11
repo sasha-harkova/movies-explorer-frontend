@@ -5,20 +5,31 @@ import { VALIDATION } from "../../utils/constants";
 
 
 
-function Profile({ signOut, updateCurrentProfile, isDisabled, clickButtonForEditInputs }) {
+function Profile({ signOut, updateCurrentProfile, setIsDisabled, isDisabled, isFormUnactive, setIsFormUnactive }) {
 	const { currentUser } = useContext(CurrentUserContext);
   	const { values, handleChange, errors, isValid, setValues, setIsValid } = useFormAndValidation();
+
+	  useEffect(() => {
+		setIsDisabled(true);
+		setIsFormUnactive(true);
+	}, []);
 
 	useEffect(() => {
 		setValues(currentUser);
 		setIsValid(false);
 	}, [currentUser]);
 
+	function clickButtonForEditInputs() {
+		setIsDisabled(false);
+		setIsFormUnactive(false);
+	}
 
 	function handleSubmit(e){
 		e.preventDefault();
 		updateCurrentProfile(values.name, values.email);
 	}
+
+	const isButtonDisabled = !isValid || (values.name === currentUser.name && values.email === currentUser.email);
 
 	return (
 	<section className="profile">
@@ -53,11 +64,12 @@ function Profile({ signOut, updateCurrentProfile, isDisabled, clickButtonForEdit
 							autoComplete="email"
 							type="email"
 							placeholder="Введите email"
+							pattern={VALIDATION.email.pattern}
 							required>
 						</input>
 					</div>
 				</fieldset>	
-				{isDisabled ? (
+				{isFormUnactive ? (
 					<div className="profile__buttons-wrapper">
 						<button className="profile__text-button" type="button" onClick={clickButtonForEditInputs}>Редактировать</button>
 						<button className="profile__text-button profile__text-button_type_signout" type="button" onClick={signOut} >Выйти из аккаунта</button>
@@ -70,7 +82,7 @@ function Profile({ signOut, updateCurrentProfile, isDisabled, clickButtonForEdit
 						{errors.email && (
 							<p className="profile__error">{errors.email}</p>
 						)}
-						<button className={`profile__submit-button ${!isValid ? "profile__submit-button_disabled" : ""}`} type="submit" disabled={!isValid}>Сохранить</button>
+						<button className={`profile__submit-button ${isButtonDisabled ? "profile__submit-button_disabled" : ""}`} type="submit" disabled={isButtonDisabled}>Сохранить</button>
 					</div>
 				)}
 			</form>	

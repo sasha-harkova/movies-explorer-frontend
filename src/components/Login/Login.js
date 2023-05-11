@@ -3,12 +3,13 @@ import useFormAndValidation from "../../hooks/useFormAndValidation";
 import SignInAndSignUpForm from "../SignInAndSignUpForm/SignInAndSignUpForm";
 
 
-function Login({ onLogin, errorText }) {
+function Login({ onLogin, errorText, setIsDisabled, isDisabled }) {
 
 	const { handleChange, errors, isValid, setIsValid, values } = useFormAndValidation();
 
 	useEffect(() => {
 		setIsValid(false);
+		setIsDisabled(false);
 	}, []);
 
 	function handleSubmit(e) {
@@ -30,7 +31,8 @@ function Login({ onLogin, errorText }) {
 			<label className="form__label" htmlFor="email">E-mail</label>
 			<input className={`form__input ${errors.email ? "form__input_type_error" : ""}`} 
 				id="email"
-				name="email" 
+				name="email"
+				disabled={isDisabled} 
 				onChange={handleChange}
 				value={values.email || ''} 
 				autoComplete="email"
@@ -43,6 +45,7 @@ function Login({ onLogin, errorText }) {
 			<input className={`form__input ${errors.password ? "form__input_type_error" : ""}`}
 				id="password"
 				name="password" 
+				disabled={isDisabled} 
 				onChange={handleChange} 
 				value={values.password || ''}
 				autoComplete="new-password"

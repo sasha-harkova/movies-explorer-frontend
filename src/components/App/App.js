@@ -14,7 +14,7 @@ import Footer from '../Footer/Footer';
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
 import Preloader from "../../vendor/Preloader/Preloader";
 import { register, login, checkToken, getCurrenUser, updateProfile, getSavedMovies  } from "../../utils/MainApi"; 
-import { LOGIN_MESSAGES, REGISTER_MESSAGES, UPDATE_PROFILE_MESSAGES } from "../../utils/constants";
+import { LOGIN_MESSAGES, REGISTER_MESSAGES, UPDATE_PROFILE_MESSAGES, SHORT_DURATION } from "../../utils/constants";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 
@@ -29,6 +29,7 @@ function App() {
 	const [isSuccessfulSession, setIsSuccessfulSession] = useState(false);
 	const [tooltipText, setTooltipText] = useState("");
 	const [errorText, setErrorText] = useState("");
+	const [isFormUnactive, setIsFormUnactive] = useState(true);
 	const [isDisabled, setIsDisabled] = useState(true);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -90,10 +91,6 @@ function App() {
 		}
 	}
 
-	function clickButtonForEditInputs() {
-		setIsDisabled(false);
-	}
-
 	function showInfoTooltip(text) {
 		setTooltipText(text);
 		setIsInfoTooltipOpen(true);
@@ -110,6 +107,7 @@ function App() {
 	}
 
 	function onLogin(email, password) {
+		setIsDisabled(true);
 		return login(email, password)
 			.then((data) => {
 				if (data.token) {
@@ -122,6 +120,7 @@ function App() {
 			})
 			.catch((error) => {
 				setIsSuccessfulSession(false);
+				setIsDisabled(false);
 				error.status === 401
 				? setErrorText(LOGIN_MESSAGES.ERROR_401)
 				: setErrorText(LOGIN_MESSAGES.ERROR)
@@ -130,12 +129,14 @@ function App() {
 	}
 
 	function onRegister(name, email, password) {
+		setIsDisabled(true);
 		return register(name, email, password) 
 			.then(() => {
 				onLogin(email, password);
 			})
 			.catch((error) => {
 				setIsSuccessfulSession(false);
+				setIsDisabled(false);
 				error.status === 409 
 				? setErrorText(REGISTER_MESSAGES.ERROR_409)
 				: setErrorText(REGISTER_MESSAGES.ERROR)
@@ -144,16 +145,18 @@ function App() {
 	}
 
 	function updateCurrentProfile(name, email) {
+		setIsDisabled(true);
 		return updateProfile(name, email)
 			.then((user) => {
 				setCurrentUser(user);
 				setIsSuccessfulSession(true);
-				setIsDisabled(true);
+				setIsFormUnactive(true);
 				showInfoTooltip(UPDATE_PROFILE_MESSAGES.SUCCESS);
 			})
 			.catch((error) => {
 				setIsSuccessfulSession(false);
 				setIsDisabled(false);
+				setIsFormUnactive(false);
 				error.status === 409
 				? showInfoTooltip(UPDATE_PROFILE_MESSAGES.ERROR_409)
 				: showInfoTooltip(UPDATE_PROFILE_MESSAGES.ERROR)
@@ -170,7 +173,7 @@ function App() {
 		});
 
 		if(isShortMovie) {
-			return searchedMovies.filter((movie) => movie.duration <= 40);
+			return searchedMovies.filter((movie) => movie.duration <= SHORT_DURATION);
 		}
 
 		return searchedMovies;
@@ -213,19 +216,19 @@ function App() {
 						<ProtectedRoute loggedIn={loggedIn}>
 							<>
 								<Header toggleAside={toggleAside} isClicked={isClicked} isLoggedIn={loggedIn} pathname={pathname} />
-								<Profile signOut={signOut} updateCurrentProfile={updateCurrentProfile} isDisabled={isDisabled} clickButtonForEditInputs={clickButtonForEditInputs}/>
+								<Profile signOut={signOut} updateCurrentProfile={updateCurrentProfile} setIsFormUnactive={setIsFormUnactive} isFormUnactive={isFormUnactive} setIsDisabled={setIsDisabled} isDisabled={isDisabled} />
 							</>
 						</ProtectedRoute>            
 					} />
 					<Route path="/signin" element={
 						loggedIn 
 						? <Navigate to='/' />
-						: <Login onLogin={onLogin} errorText={errorText} />
+						: <Login onLogin={onLogin} errorText={errorText} setIsDisabled={setIsDisabled} isDisabled={isDisabled} />
             		} />
 					<Route path="/signup" element={
 						loggedIn 
 						? <Navigate to='/' />
-						: <Register onRegister={onRegister} errorText={errorText} />          
+						: <Register onRegister={onRegister} errorText={errorText} setIsDisabled={setIsDisabled} isDisabled={isDisabled} />          
 					} />
 					<Route path="*" element={
 						<NotFound />          

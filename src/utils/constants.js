@@ -1,6 +1,7 @@
 export const MOVIES_BASE_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 export const MAIN_BASE_URL = "https://api.movies.search.harkova.nomoredomains.monster";
-// export const MAIN_BASE_URL = "http://localhost:3001";
+
+export const SHORT_DURATION = 40;
 
 export const searchMessage = {
     EMPTY: 'Нужно ввести ключевое слово',
@@ -31,6 +32,10 @@ export const VALIDATION = {
     pattern: '^[\\sa-zA-Zа-яА-ЯёЁ-]+$',
     message: 'Имя может содержать только латиницу, кириллицу, пробел или дефис',
   },
+  email: {
+    pattern: '^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$',
+    message: 'Некорректный email-адрес',
+  }
 };
 
 export const MOVIES_ADAPTATION = {
