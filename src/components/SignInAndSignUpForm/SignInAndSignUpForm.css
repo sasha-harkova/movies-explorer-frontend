@@ -141,6 +141,11 @@
     color: #FF4062;
 }
 
+.form__bottom-wrapper {
+    width: 100%;
+    margin-top: auto;
+}
+
 .form__submit-button {
     width: 100%;
     margin-top: auto;
@@ -203,5 +208,21 @@
 @media (hover:hover) {
     .form__link-to-signin:hover {
         opacity: .7;
+    }
+}
+
+.form__error {
+    margin: 0 0 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 400;
+    color: #FF4062;
+    text-align: center;
+}
+
+@media screen and (max-width: 576px) {
+    .form__error {
+        text-align: center;
     }
 }

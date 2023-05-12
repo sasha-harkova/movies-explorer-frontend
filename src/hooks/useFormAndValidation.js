@@ -1,18 +1,25 @@
-import {useState, useCallback} from 'react';
+import {useState, useCallback, useContext} from 'react';
+import { VALIDATION } from '../utils/constants';
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function useFormAndValidation() {
 	const [ values, setValues ] = useState({});
 	const [ errors, setErrors ] = useState({});
 	const [ isValid, setIsValid ] = useState(true);
-
+	const { currentUser } = useContext(CurrentUserContext);
 
 
 	const handleChange = (e) => {
 		if (e.target.validity.patternMismatch) {
-			e.target.setCustomValidity('Имя может содержать только латиницу, кириллицу, пробел или дефис')
+			if (e.target.name === 'name') {
+				e.target.setCustomValidity(VALIDATION.name.message)
+			} else if (e.target.name === 'email') {
+				e.target.setCustomValidity(VALIDATION.email.message)
+			}
 		} else {
 			e.target.setCustomValidity('')
 		}
+
 		const {name, value} = e.target
 		setValues({...values, [name]: value });
 		setErrors({...errors, [name]: e.target.validationMessage});
